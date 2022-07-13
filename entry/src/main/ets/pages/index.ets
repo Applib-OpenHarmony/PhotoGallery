@@ -20,7 +20,7 @@ import { ImageSlider, ImageSliderModel
 @Component
 struct Index {
   private ImageSliderModel1: ImageSliderModel = new ImageSliderModel();
-  private img: ResourceStr[] = [$r("app.media.img1"), $r("app.media.img2"), $r("app.media.img3"), $r("app.media.img4"), $r("app.media.img5")]
+  private imagesList: ResourceStr[] = [$r("app.media.img1"), $r("app.media.img2"), $r("app.media.img3"), $r("app.media.img4"), $r("app.media.img5")]
 
   aboutToAppear() {
     this.ImageSliderModel1.setBlockColor("#ffffff")
@@ -29,14 +29,14 @@ struct Index {
     this.ImageSliderModel1.setShowSteps(false)
     this.ImageSliderModel1.setTextColor("#ffffff")
     this.ImageSliderModel1.setButtonColor("#000000")
-    this.ImageSliderModel1.setImageHeight(350)
+    this.ImageSliderModel1.setImageHeight("350vp")
   }
 
   build() {
     Column() {
       ImageSlider(
         {
-          img: this.img,
+          imagesList: this.imagesList,
           obj: this.ImageSliderModel1
         }
       )

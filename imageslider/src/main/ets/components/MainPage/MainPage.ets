@@ -19,28 +19,29 @@ import { ImageSliderModel } from './ImageSliderModel'
 export struct ImageSlider {
   @State obj: ImageSliderModel = new ImageSliderModel();
   @State inSetValue: number = 0;
-  img: ResourceStr[];
+  imagesList: ResourceStr[];
 
   aboutToAppear() {
-    if (this.img == null || this.img == undefined) {
+    if (this.imagesList == null || this.imagesList == undefined) {
       console.error("please pass image resource array")
+      this.imagesList = [];
     }
   }
 
   build() {
-    Column({ space: 30 }) {
+    Column({ space: "30vp" }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Column() {
           Row() {
             Button("prev", { type: ButtonType.Capsule, stateEffect: true })
               .fontColor(this.obj.getTextColor())
-              .height(35)
-              .width(70)
+              .height("35vp")
+              .width("70vp")
               .backgroundColor(this.obj.getButtonColor())
-              .fontSize(15)
+              .fontSize("15fp")
               .onClick(() => {
                 animateTo({ duration: 1000 }, () => {
-                  if (this.inSetValue - 1 == -1) this.inSetValue = (this.img.length - 1)
+                  if (this.inSetValue - 1 == -1) this.inSetValue = (this.imagesList.length - 1)
                   else this.inSetValue = this.inSetValue - 1
                 })
 
@@ -51,7 +52,7 @@ export struct ImageSlider {
         Slider({
           value: this.inSetValue,
           min: 0,
-          max: this.img.length - 1,
+          max: this.imagesList.length - 1,
           step: 1,
           style: SliderStyle.InSet
         })
@@ -60,7 +61,7 @@ export struct ImageSlider {
           .selectedColor(this.obj.getSelectedColor())
           .showSteps(this.obj.getShowSteps())
           .showTips(false)
-          .trackThickness(10)
+          .trackThickness("10vp")
           .width("70%")
           .onChange((value: number, mode: SliderChangeMode) => {
             animateTo({ duration: 1000 }, () => {
@@ -72,13 +73,13 @@ export struct ImageSlider {
           Row() {
             Button("next", { type: ButtonType.Capsule, stateEffect: true })
               .fontColor(this.obj.getTextColor())
-              .height(35)
-              .width(70)
+              .height("35vp")
+              .width("70vp")
               .backgroundColor(this.obj.getButtonColor())
-              .fontSize(15)
+              .fontSize("15fp")
               .onClick(() => {
                 animateTo({ duration: 1000 }, () => {
-                  this.inSetValue = (this.inSetValue + 1) % this.img.length
+                  this.inSetValue = (this.inSetValue + 1) % this.imagesList.length
                 })
               })
           }
@@ -86,13 +87,13 @@ export struct ImageSlider {
       }
 
       Column() {
-        Image(this.img[this.inSetValue])
+        Image(this.imagesList[this.inSetValue])
           .width("95%")
           .height(this.obj.getImageHeight())
       }
     }
     .width('100%')
-    .margin({ bottom: 15, top: 20 })
+    .margin({ bottom: "15vp", top: "20vp" })
   }
 }
 

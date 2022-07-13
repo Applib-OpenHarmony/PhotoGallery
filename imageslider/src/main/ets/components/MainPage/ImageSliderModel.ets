@@ -19,7 +19,7 @@ export class ImageSliderModel {
   private selectedColor: string | ResourceColor = "#587687"
   private showSteps: boolean = false
   private textColor: string |ResourceColor = "#ffffff"
-  private imageHeight :number = 350
+  private imageHeight :Length = "350vp"
   private buttonColor : string | ResourceColor = "#000000"
   constructor() {
   }
@@ -86,12 +86,12 @@ export class ImageSliderModel {
     return this
   }
 
-  getImageHeight(): number {
+  getImageHeight(): Length {
     if ((this.imageHeight == null || this.imageHeight == undefined)) this.error('imageHeight')
     return this.imageHeight
   }
 
-  setImageHeight(value: number ): ImageSliderModel{
+  setImageHeight(value: Length ): ImageSliderModel{
     if (value != null && value != undefined) this.imageHeight = value
     return this
   }
